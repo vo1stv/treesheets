@@ -2,8 +2,6 @@
 #include <wx/wx.h>
 #include <wx/dir.h>
 
-//#include <stdio.h>
-//#include <stdlib.h>
 #include <ctype.h>
 
 #include <wx/zstream.h>
@@ -21,12 +19,15 @@
 #include <wx/config.h>
 #include <wx/confbase.h>
 #include <wx/fileconf.h>
-#ifdef WIN32
-#include <wx/msw/regconf.h>
-#include <wx/msw/dc.h>
+
+#ifdef _WIN32
+    #include <wx/msw/regconf.h>
+    #include <wx/msw/dc.h>
+    #include <WinUser.h>
 #endif
+
 #include <wx/fontdlg.h>
-#include <wx/colordlg.h> 
+#include <wx/colordlg.h>
 
 #include <wx/filename.h>
 
@@ -59,27 +60,29 @@
 
 #include <clocale>
 
-//#include <wx/uiaction.h>
+#include <wx/fswatcher.h>
 
-//#include <wx/overlay.h>
-//#include <wx/richtext/richtextctrl.h>
-
-#ifdef WIN32
-    #define FSWATCH
-#endif
-#ifdef FSWATCH
-    #include <wx/fswatcher.h>
-#endif
+#include <wx/stdpaths.h>
 
 WX_DECLARE_STRING_HASH_MAP(bool, wxHashMapBool);
 
 #include <new>
 
 #include <vector>
+#include <string>
+#include <string_view>
+#include <map>
+
+#include <utility>
+
+#include <locale>
+
+#include <sstream>
 
 #include "tools.h"
 
 
-#ifdef WIN32
+#ifdef _WIN32
     #include "..\treesheets\resource.h"
+    #include "StackWalker\StackWalkerHelpers.h"
 #endif
